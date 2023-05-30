@@ -1,0 +1,41 @@
+
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Regiones</h1>
+        <p class="lead text-muted">Una app hecha por entrenadores para entrenadores</p>
+        <p>
+          <a href="/admin/add-regions" class="btn btn-primary my-2">Añadir una region</a>         
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div  id="region-container" class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+       {{#if hasregions}}
+        {{#each regions as |region|}}
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{region.name}}</h5>
+                          
+                <a href="/admin/edit-regions/{{region.id}}?edit=true" type="button" class="btn btn-sm float-end btn-outline-warning me-3">Editar</a>
+
+                 <form method="POST" id="form-delete-region" action="/admin/drop-regions" class="form-inline">
+                  <input type="hidden" name="regiId" value= "{{region.id}}" />
+                  <button type="submit" id="delete-region" class="btn btn-sm float-end btn-outline-danger me-3">Eliminar</button> 
+                </form>     
+               </div>      
+            </div>
+          </div>
+        {{/each}}
+        {{else}}
+        <h1>No hay regiones creadas</h1>
+        {{/if}}
+        </div>
+      </div>
+    </div>
+  
